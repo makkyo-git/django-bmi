@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang='ja'>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/export.png' %}">
+
+        <title>{% block title %}{% endblock %}</title>
+
+        <link href="{% static 'bootstrap/dist/css/bootstrap.css' %}" rel="stylesheet">
+        <link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'bootstrap/dist/css/bootstrap-grid.css' %}" rel="stylesheet">
+        <link href="{% static 'bootstrap/dist/css/bootstrap-grid.min.css' %}" rel="stylesheet">
+        <link href="{% static 'bootstrap/dist/css/bootstrap-reboot.css' %}" rel="styleheet">
+        <link href="{% static 'bootstrap/dist/css/bootstrap-reboot.min.css' %}" rel="stylesheet">
+        <link href="{% static 'bootstrap/docs/4.0/examples/dashboard/dashboard.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/adjustment.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/navibar.css' %}" rel="stylesheet" type="text/css">
+
+        <link href="{% static 'css/modal.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/slider.css' %}" rel="stylesheet" type="text/css">
+       
+        <link href="{% static 'css/bmi.css' %}" rel="stylesheet" type="text/css">
+        
+
+        <script type="text/javascript" src="{% static 'js/jquery-3.6.3.min.js' %}"></script>
+  
+        <script src="{% static 'bootstrap/assets/js/vendor/anchor.min.js' %}"></script>
+        <script src="{% static 'bootstrap/assets/js/vendor/clipboard.min.js' %}"></script>
+        <script src="{% static 'bootstrap/assets/js/vendor/holder.min.js' %}"></script>
+        <script src="{% static 'bootstrap/assets/js/vendor/popper.min.js' %}"></script>
+        <script src="{% static 'bootstrap/dist/js/bootstrap.bundle.js' %}"></script>
+        <script src="{% static 'bootstrap/dist/js/bootstrap.bungle.min.js' %}"></script>
+        <script src="{% static 'bootstrap/dist/js/bootstrap.js' %}"></script>
+        <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/alert.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/button.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/carousel.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/collapse.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/dropdown.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/index.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/modal.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/scrollspy.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/tab.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/tooltip.js' %}"></script>
+        <script src="{% static 'bootstrap/js/dist/util.js' %}"></script>
+
+        <script src="{% static 'js/navibar.js' %}"></script>
+        <script src="{% static 'js/modal.js' %}"></script>
+        <script src="{% static 'js/masta.js' %}"></script>
+        <script src="{% static 'js/ajax.js' %}"></script>
+        <script src="{% static 'js/clock.js' %}"></script>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0 barbtn" href="">Makkyo</a>
+            <div class="form-control form-control-dark w-100">{% block mainT %}{% endblock %}</div>
+            <div class="btn-group">
+                <div class="btn dropdown-toggle naviDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {% if user.is_authenticated %}
+                            User : {{ user.get_username }}
+                            {% if user.icon.url != "" %}
+                                <img src="{{ user.icon.url }}" style="height: 20px; width: 20px; border-radius: 50%;">
+                            {% else %}
+                            <img src="/static/img/export.png" style="height: 20px; width: 20px; border-radius: 50%;">
+                            {% endif %}
+                        {% else %}
+                            User
+                        {% endif %}          
+                </div>
+                {% if user.is_authenticated %}
+                    <div class="dropdown-menu dropdown-menu-right" >
+                    <a class="dropdown-item" href="{% url 'mk:profile' user.pk %}">マイページ</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout/">ログアウト</a>
+                    </div>
+                {% endif %}
+            </div>
+        </nav>
+
+        <div class="drawr">
+            <div class="barmenu top">タスク管理</div>
+            <div class="barmenu"><a href="/">トップページ</a></div>
+            <div class="barmenu"><a href="/task/">タスク</a></div>
+            <div class="barmenu"><a href="/bmi/">BMI計算</a></div>
+        </div>
+
+        {% block body %}{% endblock %}
+
+    </body> 
+</html>

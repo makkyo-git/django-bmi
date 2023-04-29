@@ -1,0 +1,21 @@
+/* BMI値と適正体重のテキストの文字の色を変えて、太くして、大きくする */
+.x {
+  color: blue;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* resultのテキストの文字を太くして、大きくする */
+.y {
+  font-weight: bold;
+  font-size: 1.8em;
+}
+
+/* lunchのテキストの文字の色を変えて、太くして、大きくする */
+.z {
+  color: green;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+

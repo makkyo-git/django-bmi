@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} メンバー削除の確認 {% endblock %}
+{% block mainT %} メンバー削除の確認 {% endblock %}
+{% block body %}
+<div class="container">
+  <h1>削除の確認</h1>
+  <p>選択されたメンバーを削除しますか?</p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="delete_ids" value="{{ object.id }}">
+    <button type="submit" class="btn btn-danger">削除する</button>
+    <a href="{% url 'task:update_member' pk=object.project_id %}" class="btn btn-primary">キャンセル</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %} Makkyo {% endblock %}
+{%block mainT %} BMI値測定 {% endblock %}
+{% block body %}
+<html lang="ja">
+<div class="margin:20px">
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <style>
+    h1{
+    text-align: center;
+    }
+    .center{
+    text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <h1>{{title}}</h1>
+    <table class="table">
+    <form action="{% url 'bmi' %}" method="post">
+        <tbody>
+               <tr>
+                   <td style="text-align: center;">{{ form.height.label }} {{ form.height }}cm</td>
+               </tr>
+               <tr>
+                   <td style="text-align: center;">{{ form.weight.label }} {{ form.weight }}kg</td>
+               </tr>
+               <tr>
+                   <td style="text-align: center;"><button type='submit' class="btn btn-primary">結果</button></td>
+               </tr>
+               <tr>
+        </tbody>
+        {% csrf_token %}
+    </form>
+    <form>
+        <tbody>
+               <tr>
+                   <td style="text-align: center;">BMI値: <span class="x">{{ bmi }}</span></td>
+               </tr>
+               <tr>
+                   <td style="text-align: center;">適正体重: <span class="x">{{ standard }}</span>kg</td>
+               </tr>
+        </tbody>
+    </form>
+    </table>
+        {% csrf_token %}
+    <p class= "center"><span class="y">{{ result }}</span></p>
+    <p class= "center"><span class="z">{{ lunch }}</span></p>
+</body>
+</html> 
+{% endblock %}

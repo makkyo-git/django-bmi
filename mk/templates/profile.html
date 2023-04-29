@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} Makkyo {% endblock %}
+{% block mainT %} アカウント情報 {% endblock %}
+{% block body %}
+<div style="margin:20px">
+    <div class="icon">
+        {% if user.icon.url != "" %}
+            <img src="{{ user.icon.url }}" style="height: 100px; width: 100px; border-radius: 50%;">
+        {% else %}
+            <img src="/static/img/export.png" style="height: 50px; width: 50px; border-radius: 50%;">
+        {% endif %}
+    </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ユーザー名</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>性別</th>
+                <td>{{ user.gender }}</td>
+            </tr>
+            <tr>
+                <th>生年月日</th>
+                <td>{{ user.birthdate }}</td>
+            </tr>
+            <tr>
+                <th>メールアドレス</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>姓</th>
+                <td>{{ user.last_name }}</td>
+            </tr>
+            <tr>
+                <th>名</th>
+                <td>{{ user.first_name }}</td>
+            </tr>
+        </tbody>
+    </table> 
+    <a href="{% url 'mk:profile_update' user.pk %}" class="btn btn-primary ">変更</a>
+    <a href="{% url 'mk:password' user.pk %}" class="btn btn-primary ">パスワード変更</a>
+</div>
+{% endblock %}
